@@ -1,4 +1,5 @@
-# The problem of this solution is the sequence that we are using to check the (s[left] != s[right]) is kind of wrong. because the test cases lilke (eceec and lcupuuuupcul) will fail.
+# The issue with this solution is the sequence used to check (s[left] != s[right]) is incorrect.
+# Test cases like (eceec and lcupuuuupcul) will fail.
 class Solution:
     def validPalindrome(self, s: str) -> bool:
         left, right = 0, len(s) - 1
@@ -20,17 +21,16 @@ class Solution:
             return True
         return False
 
-# The 2nd approach - is directly checking the palendrome after the condition of skipping character 
+# The second approach directly checks for a palindrome after skipping a character.
 class Solution:
     def validPalindrome(self, s: str) -> bool:
         left, right = 0, len(s) - 1
         while left < right:
-            if (s[left] != s[right]):
+            if s[left] != s[right]:
                 skip_left_s = s[left + 1:right + 1]
-                skip_right_s = s[left: right]
-                # Either one of them must be palendrome
-
-                return (skip_left_s == skip_left_s[::-1] or skip_right_s == skip_right_s[::-1])
+                skip_right_s = s[left:right]
+                # One of these must be a palindrome
+                return skip_left_s == skip_left_s[::-1] or skip_right_s == skip_right_s[::-1]
             left += 1
             right -= 1
         return True
